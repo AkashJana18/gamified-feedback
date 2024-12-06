@@ -1,5 +1,7 @@
+import { DevCycleClientsideProvider } from "@devcycle/nextjs-sdk";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { getClientContext } from "./devcycle";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -28,7 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <DevCycleClientsideProvider context={getClientContext()}>
+          {children}
+        </DevCycleClientsideProvider>
       </body>
     </html>
   );
